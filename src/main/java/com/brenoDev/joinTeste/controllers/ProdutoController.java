@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -26,6 +27,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/produtos")
+@CrossOrigin(origins = "http://localhost:4200") // Permitir apenas essa origem
 public class ProdutoController {
 
     @Autowired
@@ -37,7 +39,7 @@ public class ProdutoController {
 		return ResponseEntity.ok().body(obj);
 	}
 	
-	//endpoint -> localhost:8080/livros?categoria=1
+	//endpoint -> localhost:8080/produtos?categoria=1
 	@GetMapping()
 	public ResponseEntity<List<ProdutoDTO>> findAll(@RequestParam(value = "categoria", defaultValue = "0") Long id_cat) {
 		List<Produto> list = produtoService.findAll(id_cat);
