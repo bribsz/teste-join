@@ -1,0 +1,20 @@
+.home {
+    width: 95%;
+    margin: 1rem auto;
+}
+
+@media(max-width:450x) {
+    .home {
+        width: 70%;
+    }
+}
+
+@media(max-width:770x) {
+    .home {
+        width: 90%;
+    }
+}
+
+.title-subtitle {
+    padding-left: 15px;
+}
