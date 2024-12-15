@@ -12,7 +12,6 @@ public class ProdutoDTO implements Serializable{
 	private String nome;
 	
 	public ProdutoDTO(Produto obj) {
-		super();
 		this.id = obj.getId();
 		this.nome = obj.getNome();
 	}

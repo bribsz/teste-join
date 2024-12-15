@@ -27,7 +27,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/produtos")
-@CrossOrigin(origins = "http://localhost:4200") // Permitir apenas essa origem
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProdutoController {
 
     @Autowired
@@ -47,11 +47,10 @@ public class ProdutoController {
 		return ResponseEntity.ok().body(listDTO);
 	}
 	
-	// RequestParam é pq precisa do "id" de categoria que é passado na URL para ser criado o livro
 	@PostMapping
 	public ResponseEntity<Produto> create(@RequestParam(value = "categoria", defaultValue = "0") Long id_cat, @Valid @RequestBody Produto obj) {
 		Produto newObj = produtoService.create(id_cat, obj);
-		URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/livros/{id}").buildAndExpand(newObj.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/produtos/{id}").buildAndExpand(newObj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	

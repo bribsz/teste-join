@@ -2,8 +2,6 @@ package com.brenoDev.joinTeste.entities;
 
 import java.io.Serializable;
 
-import java.math.BigDecimal;
-
 import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -30,12 +28,23 @@ public class Produto implements Serializable {
 	@Length(min = 3, max = 100, message = "O campo NOME deve ter entre 3 e 50 caracteres")
     private String nome;
 
-    private BigDecimal preco;
+    private Double preco;
 
     @JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "categoria_id")
     private Categoria categoria;
+
+	public Produto(Long id, String nome, Double preco, Categoria categoria) {
+		this.id = id;
+		this.nome = nome;
+		this.preco = preco;
+		this.categoria = categoria;
+	}
+	
+    public Produto() {
+    	
+    }
 
 	public Long getId() {
 		return id;
@@ -53,11 +62,11 @@ public class Produto implements Serializable {
 		this.nome = nome;
 	}
 
-	public BigDecimal getPreco() {
+	public Double getPreco() {
 		return preco;
 	}
 
-	public void setPreco(BigDecimal preco) {
+	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
 
